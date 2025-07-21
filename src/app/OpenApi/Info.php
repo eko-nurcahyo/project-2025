@@ -19,7 +19,7 @@ namespace App\OpenApi;
  * )
  *
  * @OA\Server(
- *     url="https://dev.test",
+ *     url="http://project.test",
  *     description="Local API Server"
  * )
  *

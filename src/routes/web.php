@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
 
 // Homepage kebab
 Route::get('/', function () {
@@ -22,14 +25,14 @@ Route::get('/book', function () {
 });
 
 // Cart (keranjang)
-Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
-Route::post('/cart/update', [\App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
-Route::post('/cart/remove', [\App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 
 // Checkout (form konfirmasi data diri & alamat)
-Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
-Route::post('/checkout/process', [\App\Http\Controllers\CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
 // (Opsional) Payment Gateway Callback (jika pakai pembayaran otomatis)
-Route::post('/payment/callback', [\App\Http\Controllers\PaymentController::class, 'callback'])->name('payment.callback');
+Route::post('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');

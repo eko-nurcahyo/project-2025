@@ -23,7 +23,10 @@ class MenuResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')->required(),
+            TextInput::make('price')->numeric()->required(),
+            Textarea::make('description'),
+            FileUpload::make('image')->image(),
             ]);
     }
 

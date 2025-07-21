@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('name');        // Nama pembeli
+            $table->string('phone');       // No HP
+            $table->string('address');     // Alamat
+            $table->json('items');         // Daftar item (json)
+            $table->decimal('total', 12, 2); // Total harga
+            $table->string('status')->default('pending'); // Status order
             $table->timestamps();
         });
     }

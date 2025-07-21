@@ -16,201 +16,58 @@
     },
     "servers": [
         {
-            "url": "https://dev.test",
+            "url": "http://project.test",
             "description": "Local API Server"
         }
     ],
     "paths": {
-        "/api/cart": {
-            "get": {
-                "tags": [
-                    "Cart"
-                ],
-                "summary": "Lihat keranjang",
-                "operationId": "4a5b59ae2510cd04eabafe62797d21d2",
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
-        "/api/cart/add": {
-            "post": {
-                "tags": [
-                    "Cart"
-                ],
-                "summary": "Tambah menu ke keranjang",
-                "operationId": "e940193f73a57895e17830b67c48f89c",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "menu_id"
-                                ],
-                                "properties": {
-                                    "menu_id": {
-                                        "type": "integer"
-                                    },
-                                    "qty": {
-                                        "type": "integer",
-                                        "default": 1
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
-        "/api/cart/remove": {
-            "post": {
-                "tags": [
-                    "Cart"
-                ],
-                "summary": "Hapus menu dari keranjang",
-                "operationId": "909d5ec3dd7f28435bc44543c80bb01c",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "menu_id"
-                                ],
-                                "properties": {
-                                    "menu_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
-        "/api/menus": {
-            "get": {
-                "tags": [
-                    "Menu"
-                ],
-                "summary": "List semua menu",
-                "operationId": "b7ada4b7809c48f68576b5acd88301db",
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
-                }
-            }
-        },
-        "/api/menus/{id}": {
-            "get": {
-                "tags": [
-                    "Menu"
-                ],
-                "summary": "Detail menu",
-                "operationId": "f21bb63f9fe1ea437a502e5116af01a8",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
-                }
-            }
-        },
         "/api/orders": {
             "get": {
                 "tags": [
-                    "Order"
+                    "Orders"
                 ],
-                "summary": "List semua pesanan",
+                "summary": "Get all orders",
                 "operationId": "955bb77a45ae173a485fadb8befed93f",
                 "responses": {
                     "200": {
-                        "description": "Success"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Order"
-                ],
-                "summary": "Buat pesanan",
-                "operationId": "4f60117ed5e301574db6b50e09775d99",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "phone",
-                                    "address",
-                                    "latitude",
-                                    "longitude",
-                                    "items",
-                                    "total"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "phone": {
-                                        "type": "string"
-                                    },
-                                    "address": {
-                                        "type": "string"
-                                    },
-                                    "latitude": {
-                                        "type": "number",
-                                        "format": "float"
-                                    },
-                                    "longitude": {
-                                        "type": "number",
-                                        "format": "float"
-                                    },
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
                                     "items": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "total": {
-                                        "type": "number",
-                                        "format": "float"
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "phone": {
+                                                "type": "string"
+                                            },
+                                            "address": {
+                                                "type": "string"
+                                            },
+                                            "items": {
+                                                "type": "object"
+                                            },
+                                            "total": {
+                                                "type": "number"
+                                            },
+                                            "status": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            }
+                                        },
+                                        "type": "object"
                                     }
-                                },
-                                "type": "object"
+                                }
                             }
                         }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created"
                     }
                 }
             }
@@ -295,16 +152,8 @@
     },
     "tags": [
         {
-            "name": "Cart",
-            "description": "Cart"
-        },
-        {
-            "name": "Menu",
-            "description": "Menu"
-        },
-        {
-            "name": "Order",
-            "description": "Order"
+            "name": "Orders",
+            "description": "Orders"
         }
     ]
 }
