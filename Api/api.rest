@@ -1,0 +1,62 @@
+@baseUrl = http://project.test/api
+@cType = application/json
+
+### --- GET ALL MENUS
+GET {{baseUrl}}/menus
+Accept: {{cType}}
+
+### --- GET MENU BY ID
+GET {{baseUrl}}/menus/1
+Accept: {{cType}}
+
+### --- CART: GET CURRENT CART (session user)
+GET {{baseUrl}}/cart
+Accept: {{cType}}
+
+### --- CART: ADD MENU TO CART
+POST {{baseUrl}}/cart/add
+Content-Type: {{cType}}
+
+{
+  "menu_id": 1,
+  "qty": 2
+}
+
+### --- CART: UPDATE QTY
+PUT {{baseUrl}}/cart/update
+Content-Type: {{cType}}
+
+{
+  "menu_id": 1,
+  "qty": 3
+}
+
+### --- CART: REMOVE MENU FROM CART
+DELETE {{baseUrl}}/cart/remove
+Content-Type: {{cType}}
+
+{
+  "menu_id": 1
+}
+
+### --- ORDERS: CREATE ORDER
+POST {{baseUrl}}/orders
+Content-Type: {{cType}}
+
+{
+  "name": "Budi",
+  "phone": "08123456789",
+  "address": "Jl. Mawar No.10",
+  "items": [
+    {"menu_id": 1, "qty": 2},
+    {"menu_id": 2, "qty": 1}
+  ]
+}
+
+### --- ORDERS: GET ALL ORDERS
+GET {{baseUrl}}/orders
+Accept: {{cType}}
+
+### --- ORDERS: GET ORDER BY ID
+GET {{baseUrl}}/orders/1
+Accept: {{cType}}

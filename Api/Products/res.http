@@ -1,6 +1,0 @@
-@baseUrl = https://project.test/api/products
-@cType = application/json
-
-### Get all products
-GET {{baseUrl}}
-Content-Type: {{cType}}

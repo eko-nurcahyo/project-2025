@@ -12,19 +12,19 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
-        // User::factory(10)->create();
+{
+    // User::factory(10)->create();
 
-        $user = \App\Models\User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-        ]);
+    $user = \App\Models\User::factory()->create([
+        'name' => 'Admin',
+        'email' => 'admin@admin.com',
+    ]);
+    $user->assignRole('super_admin');
 
-        $user->assignRole('super_admin');
+    $this->call([
+        // Tambahkan seeder lain di sini
+        \Database\Seeders\MenuSeeder::class,
+    ]);
+}
 
-        $this->call([
-            ProductSeeder::class,
-            ClientSeeder::class,
-        ]);
-    }
 }
